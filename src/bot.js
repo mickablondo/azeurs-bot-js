@@ -25,8 +25,14 @@ const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-  const { name, description, execute } = await import(`./commands/${file}`);
-  client.commands.set(name, { name, description, execute });
+  const { name, description, execute, aliases } = await import(`./commands/${file}`);
+  client.commands.set(name, { name, description, execute, aliases });
+
+  if (aliases && Array.isArray(aliases)) {
+    for (const alias of aliases) {
+      client.commands.set(alias, { name, description, execute, aliases });
+    }
+  }
 }
 
 // =====================
@@ -48,7 +54,7 @@ if (fs.existsSync(eventsPath)) {
 client.on('messageCreate', (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-  const args = message.content.slice(1).trim().split(/ +/);
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
   const command = client.commands.get(commandName);
