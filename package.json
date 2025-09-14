@@ -1,0 +1,23 @@
+{
+  "name": "azeurs-bot",
+  "version": "1.0.0",
+  "description": "Personal discord bot with discord.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mickablondo/azeurs-bot-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mickablondo/azeurs-bot-js/issues"
+  },
+  "homepage": "https://github.com/mickablondo/azeurs-bot-js#readme",
+  "dependencies": {
+    "discord.js": "^14.22.1"
+  }
+}
